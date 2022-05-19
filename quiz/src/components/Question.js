@@ -1,4 +1,5 @@
-import React from "react"
+import React, { Component } from "react"
+import Option from "./Option"
 import "../css/Question.css"
 
 function Question(props) {
@@ -6,11 +7,10 @@ function Question(props) {
         <div className="question">
             <p className="title">{props.title}</p>
             <div className="options">
-                {props.options.map(option => {
+                {props.options.map((option, index) => {
+                    console.log(index + ": " + option)
                     return (
-                        <p className="option">
-                            {option}
-                        </p>
+                            <Option title={option}/>
                     )
                 })}
             </div>
