@@ -11,6 +11,9 @@
 .google-sign-in {
     background-color: white;
     font-size: 25px;
+    text-decoration: none;
+    color: black;
+    border: 3px solid black;
     
     height: 90px;
     width: 250px;
@@ -26,4 +29,5 @@
     background-color: black;
     color: white;
     font-size: 25px;
+    text-decoration: none;
 }
