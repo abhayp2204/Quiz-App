@@ -11,7 +11,7 @@ function Navbar() {
     return (
         <nav>
             <Link style={navStyle} to="/"><p>Home</p></Link>
-            <Link style={navStyle} to="/about"><p>About</p></Link>
+            <Link style={navStyle} to="/quizzes"><p>Quizzes</p></Link>
             <Link style={navStyle} to="/shop"><p>Shop</p></Link>
         </nav>
     )

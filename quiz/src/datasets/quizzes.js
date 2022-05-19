@@ -1,19 +1,19 @@
 export const quizzes = [
     {
         id: 1,
-        name: "Pop Culture",
+        name: "GAME OF THRONES",
         link: "popculture",
         questions: [
             {
                 id: 1,
-                title: "When did World War I start?",
+                title: "Who is the youngest of Ned Stark's kids?",
                 options: [
-                    1912,
-                    1913,
-                    1914,
-                    1915,
+                    "Rickon",
+                    "Sansa",
+                    "Arya",
+                    "Bran",
                 ],
-                answer: 3,
+                answer: 0,
             },
             {
                 id: 2,
@@ -43,6 +43,19 @@ export const quizzes = [
         id: 2,
         name: "Geography",
         link: "geography",
+        questions: [
+            {
+                id: 1,
+                title: "What is the capital of Australia?",
+                options: [
+                    "Sydney",
+                    "Perth",
+                    "Canberra",
+                    "Canada",
+                ],
+                answer: 4,
+            },
+        ]
     },
     {
         id: 3,

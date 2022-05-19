@@ -5,10 +5,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 // Components
 import Quiz from "./Quiz"
 import Navbar from "./Navbar"
-import Test from "./Test"
 import Home from "./Home"
-import About from "./About"
 import Shop from "./Shop"
+import QuizSelect from "./QuizSelect"
 
 // Data
 import { quizzes } from "../datasets/quizzes"
@@ -24,7 +23,11 @@ function App() {
                 <Navbar />
                 <Routes>
                     <Route path="/" element={ <Home /> } />
-                    <Route path="/about" element={ <About /> } />
+                    <Route path="/quizzes" element={ <QuizSelect /> } />
+                    <Route
+                        path="/quizzes/:id"
+                        element={ <Quiz/> }
+                    />
                     <Route path="/shop" element={ <Shop /> } />
                 </Routes>
             </div>
