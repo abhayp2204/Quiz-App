@@ -29,10 +29,9 @@ function App() {
     return (
         <Router>
             <div className="app">
-                <Navbar />
-                <SignOut />
                 {user?
                     <>
+                        <Navbar loggedIn={true} />
                         <Routes>
                             <Route path="/" element={ <Home /> } />
                             <Route path="/quizzes" element={ <QuizSelect /> } />
@@ -45,7 +44,7 @@ function App() {
                     </>
                     :
                     <>
-                        
+                        <Navbar loggedIn={false} />
                         <div className="sign-in-container">
                             <SignIn />
                         </div>

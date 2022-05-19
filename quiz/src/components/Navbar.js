@@ -3,7 +3,7 @@ import "../css/Navbar.css"
 import { Link } from "react-router-dom"
 import { auth } from "../firebase"
 
-function Navbar() {
+function Navbar(props) {
     const navStyle = {
         color: "white",
         textDecoration: "none",
@@ -11,16 +11,27 @@ function Navbar() {
 
     return (
         <nav>
-            <Link style={navStyle} to="/">
-                <p>Home</p>
-            </Link>
-            <Link style={navStyle} to="/quizzes">
-                <p>Quizzes</p>
-            </Link>
-            <Link style={navStyle} to="/shop">
-                <p>Shop</p>
-            </Link>
-            <SignOut />
+            {props.loggedIn?
+                <>
+                    <Link style={navStyle} to="/">
+                        <p>Home</p>
+                    </Link>
+                    <Link style={navStyle} to="/quizzes">
+                        <p>Quizzes</p>
+                    </Link>
+                    <Link style={navStyle} to="/shop">
+                        <p>Shop</p>
+                    </Link>
+                    <SignOut />
+                </>
+                :
+                <>
+                    <Link style={navStyle} to="/">
+                        <p>Leaf Quiz</p>
+                    </Link>
+                </>
+            }
+            
         </nav>
     )
 }

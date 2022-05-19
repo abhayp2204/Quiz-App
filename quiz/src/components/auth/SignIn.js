@@ -1,7 +1,7 @@
 import React from "react"
 import { auth } from "../../firebase"
 import firebase from "firebase/compat/app"
-import "../../css/auth.css"
+import "../../css/Auth.css"
 
 function SignIn() {
     console.log("start: Sign up with Google")
