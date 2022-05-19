@@ -1,0 +1,26 @@
+.quiz-container {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    height: 600px;
+}
+
+.quiz {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #007FFF;
+    color: white;
+
+    height: 140px;
+    width: 260px;
+
+    margin: 100px 20px;
+    font-size: 30px;
+    border-radius: 15px;
+}
+
+.quiz-container :hover {
+    cursor: pointer;
+}

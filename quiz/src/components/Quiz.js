@@ -1,12 +1,12 @@
 import React from "react"
 import Question from "./Question"
-import { quizQuestions } from "../datasets/quizQuestions"
+// import { quizQuestions } from "../datasets/quizQuestions"
 
-function Quiz() {
+function Quiz(props) {
 
     return (
         <>
-            {quizQuestions.map((question) => {
+            {props.questions && props.questions.map((question) => {
                 return (
                     <Question 
                         key={question.id}
@@ -16,9 +16,6 @@ function Quiz() {
                     />
                 )
             })}
-            {/* <Question title="When did World War I start?" />
-            <Question title="What is 7 + 5?"/>
-            <Question title="What is the formula of Methane?"/> */}
         </>
     )
 }

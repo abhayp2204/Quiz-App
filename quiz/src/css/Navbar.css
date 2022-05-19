@@ -1,0 +1,18 @@
+nav {
+    background-color: black;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav :hover {
+    cursor: pointer;
+    color: red;
+}
+
+nav p {
+    padding: 20px;
+    font-size: 20px;
+}
