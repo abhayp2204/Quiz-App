@@ -8,6 +8,7 @@ function QuizSelect() {
     const navStyle = {
         color: "white",
         textDecoration: "none",
+        cursor: "default"
     }
 
     const listComp = []
@@ -22,7 +23,7 @@ function QuizSelect() {
 
 
     return (
-        <div className="quizzes">
+        <div className="quiz-list">
             {listComp}
         </div>
     )

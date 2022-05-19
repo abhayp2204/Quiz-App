@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useState } from "react"
 import "../css/Navbar.css"
 import { Link } from "react-router-dom"
+import { matchPath } from "react-router-dom"
 
 function Navbar() {
     const navStyle = {
@@ -10,9 +11,15 @@ function Navbar() {
 
     return (
         <nav>
-            <Link style={navStyle} to="/"><p>Home</p></Link>
-            <Link style={navStyle} to="/quizzes"><p>Quizzes</p></Link>
-            <Link style={navStyle} to="/shop"><p>Shop</p></Link>
+            <Link style={navStyle} to="/">
+                <p>Home</p>
+            </Link>
+            <Link style={navStyle} to="/quizzes">
+                <p>Quizzes</p>
+            </Link>
+            <Link style={navStyle} to="/shop">
+                <p>Shop</p>
+            </Link>
         </nav>
     )
 }

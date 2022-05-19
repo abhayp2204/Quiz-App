@@ -1,6 +1,9 @@
 nav {
     background-color: black;
     color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
 
     display: flex;
     justify-content: center;
@@ -10,9 +13,14 @@ nav {
 nav :hover {
     cursor: pointer;
     color: red;
+    color: #04A777;
 }
 
 nav p {
     padding: 30px;
     font-size: 25px;
+}
+
+.active {
+    background-color: #04A777;
 }

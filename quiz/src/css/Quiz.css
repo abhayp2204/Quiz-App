@@ -1,16 +1,13 @@
-.quiz-container {
+.quiz-list {
+    background-color: #E9FFF9;
+    margin-top: 90px;
+    font-size: 20px;
     display: flex;
     justify-content: center;
-    background-color: black;
-    height: 600px;
 }
 
-.quizzes {
-    display: flex;
-}
-
-.quizzes div {
-    background-color: #7FB800;
+.quiz-list div {
+    background-color: #04A777;
 
     display: flex;
     justify-content: center;
@@ -19,8 +16,14 @@
     width: 200px;
     height: 140px;
 
-    margin: 20px;
+    margin: 30px 20px;
     border-radius: 20px;
+}
+
+div .quiz-list :hover {
+    cursor: pointer;
+    z-index: 100px;
+    transform: scale(1.07);
 }
 
 .quiz {
@@ -37,8 +40,4 @@
     margin: 100px 20px;
     font-size: 30px;
     border-radius: 15px;
-}
-
-.quiz-container :hover {
-    cursor: pointer;
 }

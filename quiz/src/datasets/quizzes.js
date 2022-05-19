@@ -1,7 +1,7 @@
 export const quizzes = [
     {
         id: 1,
-        name: "GAME OF THRONES",
+        name: "Game Of Thrones",
         link: "popculture",
         questions: [
             {
@@ -17,23 +17,23 @@ export const quizzes = [
             },
             {
                 id: 2,
-                title: "What is the capital of Australia?",
+                title: "What is the name of Arya's sword?",
                 options: [
-                    "Sydney",
-                    "Canberra",
-                    "Perth",
-                    "Canada",
+                    "Pickler",
+                    "Needler",
+                    "Needle",
+                    "Sting",
                 ],
                 answer: 2,
             },
             {
                 id: 3,
-                title: "What is the formula of propyne?",
+                title: "Who killed the Mad King?",
                 options: [
-                    "C3H4",
-                    "C3H5",
-                    "C3H3",
-                    "C3H6",
+                    "Ned Stark",
+                    "Jamie Lannister",
+                    "Kingslayer",
+                    "The Night King",
                 ],
                 answer: 1,
             }
