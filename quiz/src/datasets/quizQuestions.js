@@ -8,7 +8,7 @@ export const quizQuestions = [
             1914,
             1915,
         ],
-        correct_option: 3,
+        answer: 3,
     },
     {
         id: 2,
@@ -19,7 +19,7 @@ export const quizQuestions = [
             "Perth",
             "Canada",
         ],
-        correct_option: 2,
+        answer: 2,
     },
     {
         id: 3,
@@ -30,6 +30,6 @@ export const quizQuestions = [
             "C3H3",
             "C3H6",
         ],
-        correct_option: 1,
+        answer: 1,
     }
 ]

@@ -7,7 +7,14 @@ function Quiz() {
     return (
         <>
             {quizQuestions.map((question) => {
-                return <Question key={question.id} title={question.title} options={question.options}/>
+                return (
+                    <Question 
+                        key={question.id}
+                        title={question.title}
+                        options={question.options}
+                        answer={question.answer}
+                    />
+                )
             })}
             {/* <Question title="When did World War I start?" />
             <Question title="What is 7 + 5?"/>

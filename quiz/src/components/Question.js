@@ -8,9 +8,13 @@ function Question(props) {
             <p className="title">{props.title}</p>
             <div className="options">
                 {props.options.map((option, index) => {
-                    console.log(index + ": " + option)
                     return (
-                            <Option title={option}/>
+                            <Option
+                                key={index}
+                                id={index}
+                                title={option}
+                                answer={props.answer}
+                            />
                     )
                 })}
             </div>
