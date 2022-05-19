@@ -36,6 +36,39 @@ export const quizzes = [
                     "The Night King",
                 ],
                 answer: 1,
+            },
+            {
+                id: 4,
+                title: "Who is the youngest of Ned Stark's kids?",
+                options: [
+                    "Rickon",
+                    "Sansa",
+                    "Arya",
+                    "Bran",
+                ],
+                answer: 0,
+            },
+            {
+                id: 5,
+                title: "What is the name of Arya's sword?",
+                options: [
+                    "Pickler",
+                    "Needler",
+                    "Needle",
+                    "Sting",
+                ],
+                answer: 2,
+            },
+            {
+                id: 6,
+                title: "Who killed the Mad King?",
+                options: [
+                    "Ned Stark",
+                    "Jamie Lannister",
+                    "Kingslayer",
+                    "The Night King",
+                ],
+                answer: 1,
             }
         ]
     },

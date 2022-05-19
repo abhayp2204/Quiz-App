@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import "../css/Navbar.css"
 import { Link } from "react-router-dom"
-import { matchPath } from "react-router-dom"
+import { auth } from "../firebase"
 
 function Navbar() {
     const navStyle = {
@@ -20,7 +20,14 @@ function Navbar() {
             <Link style={navStyle} to="/shop">
                 <p>Shop</p>
             </Link>
+            <SignOut />
         </nav>
+    )
+}
+
+function SignOut() {
+    return auth.currentUser && (
+        <button className="sign-out" onClick={() => auth.signOut()}>Sign Out</button>
     )
 }
 

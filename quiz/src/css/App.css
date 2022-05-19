@@ -2,3 +2,16 @@
     font-family: Arial, Helvetica, sans-serif;
     margin: 0px;
 }
+
+::-webkit-scrollbar {
+    width: 0.6vw;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #04A777;
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: black;
+}

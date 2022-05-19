@@ -1,0 +1,29 @@
+.sign-in-container {
+    display: flex;
+    justify-content: center;
+}
+
+.sign-in-container :hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.google-sign-in {
+    background-color: white;
+    font-size: 25px;
+    
+    height: 90px;
+    width: 250px;
+    margin-top: 200px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-out {
+    margin-top: 0px;
+    background-color: black;
+    color: white;
+    font-size: 25px;
+}
