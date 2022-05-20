@@ -12,7 +12,7 @@ import { useAuthState } from "react-firebase-hooks/auth"
 import Quiz from "./Quiz"
 import Navbar from "./Navbar"
 import Home from "./Home"
-import Shop from "./Shop"
+import CreateQuiz from "./CreateQuiz"
 import QuizSelect from "./QuizSelect"
 import SignIn from "./auth/SignIn"
 
@@ -39,7 +39,7 @@ function App() {
                                 path="/quizzes/:id"
                                 element={ <Quiz/> }
                                 />
-                            <Route path="/shop" element={ <Shop /> } />
+                            <Route path="/createquiz" element={ <CreateQuiz /> } />
                         </Routes>
                     </>
                     :

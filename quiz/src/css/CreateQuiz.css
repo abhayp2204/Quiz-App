@@ -1,0 +1,29 @@
+.create-quiz-form {
+    margin-top: 100px;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-quiz-name {
+    height: 40px;
+    width: 300px;
+
+    margin-top: 20px;
+    border-radius: 20px;
+    font-size: inherit;
+    padding: 10px;
+}
+
+.create-quiz-submit {
+    background-color: #04A777;
+    margin-top: 20px;
+    width: 100px;
+    border-radius: 20px;
+}
+
+.create-quiz-form :hover{
+    transform: scale(1.1);
+}
