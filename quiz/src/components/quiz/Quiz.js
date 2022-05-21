@@ -5,22 +5,32 @@ import "../../css/Question.css"
 
 import "firebase/compat/firestore"
 import "firebase/compat/auth"
-import firebase from "firebase/compat/app"
 import { firestore } from "../../firebase"
-import { useCollectionData } from "react-firebase-hooks/firestore"
 
-function Quiz(props) {
+function Quiz() {
     const quizList = useContext(quizListContext)
     const { id } = useParams()
-    const [newQuestion, setNewQuestion] = useState("")
-    var db = firebase.firestore()
     const quizzesRef = firestore.collection("quizzes")
+
+
+    const [newQuestion, setNewQuestion] = useState("")
+    const [optionA, setOptionA] = useState("")
+    const [optionB, setOptionB] = useState("")
+    const [optionC, setOptionC] = useState("")
+    const [optionD, setOptionD] = useState("")
+
     
     if(!quizList) return
 
     const handleAddQuestion = async(e) => {
         e.preventDefault()
-        Q.questions.push(newQuestion)
+        Q.questions.push({
+            name: newQuestion,
+            optionA: optionA,
+            optionB: optionB,
+            optionC: optionC,
+            optionD: optionD,
+        })
 
         if(!newQuestion) {
             return
@@ -55,22 +65,57 @@ function Quiz(props) {
 
     // Array of questions
     var questionList = []
-    Q.questions && Q.questions.map(question => {
-        questionList.push(<p>{question}</p>)
+    Q.questions && Q.questions.map((question, index) => {
+        questionList.push(
+            <div className="question-container">
+                <p className="question" key={index}>
+                    {question.name}
+                </p>
+                <p className="options">{question.optionA}</p>
+                <p className="options">{question.optionB}</p>
+                <p className="options">{question.optionC}</p>
+                <p className="options">{question.optionD}</p>
+            </div>
+        )
     })
 
     return (
-        <div className="question-container">
+        <div className="quiz-container">
             <p className="quiz-title">{Q.name}</p>
-            <p>{questionList}</p>
-            <form onSubmit={handleAddQuestion}>
+            {questionList}
+
+            <form className="add-question-form pop" onSubmit={handleAddQuestion}>
                 <input
-                    className="add-question-input pop"
+                    className="add-question-input"
                     value={newQuestion}
                     onChange={(e) => setNewQuestion(e.target.value)}
                     placeholder="Question"
                 />
-                <button className="add-question-submit pop" type="submit">Add</button>
+                <input
+                    className="add-option"
+                    value={optionA}
+                    onChange={(e) => setOptionA(e.target.value)}
+                    placeholder="A"
+                />
+                <input
+                    className="add-option"
+                    value={optionB}
+                    onChange={(e) => setOptionB(e.target.value)}
+                    placeholder="B"
+                />
+                <input
+                    className="add-option"
+                    value={optionC}
+                    onChange={(e) => setOptionC(e.target.value)}
+                    placeholder="C"
+                />
+                <input
+                    className="add-option"
+                    value={optionD}
+                    onChange={(e) => setOptionD(e.target.value)}
+                    placeholder="D"
+                />
+                <button className="add-question-submit" type="submit">Add</button>
             </form>
         </div>
     )

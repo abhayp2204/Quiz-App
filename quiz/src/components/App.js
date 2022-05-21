@@ -44,7 +44,7 @@ function App() {
                             <Route path="/quizzes" element={ <QuizSelect /> } />
                             <Route
                                 path="/quizzes/:id"
-                                element={ <Quiz quizList={quizList} /> }
+                                element={ <Quiz /> }
                                 />
                             <Route path="/createquiz" element={ <CreateQuiz /> } />
                             <Route path="/deletequiz" element={ <DeleteQuiz quizList={quizList} /> } />
