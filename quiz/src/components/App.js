@@ -26,11 +26,14 @@ import "../css/Quiz.css"
 export const quizzesRef = firestore.collection("quizzes")
 export const query = quizzesRef.orderBy("id").limit(50)
 
+export const quizListContext = React.createContext()
+
 function App() {
     const [user] = useAuthState(auth)
     const [quizList] = useCollectionData(query, {idField: "id"})
 
     return (
+        <quizListContext.Provider value={quizList}>
         <Router>
             <div className="app">
                 {user?
@@ -57,6 +60,7 @@ function App() {
                 }
             </div>
         </Router>
+        </quizListContext.Provider>
     );
 }
 
