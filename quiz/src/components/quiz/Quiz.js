@@ -5,6 +5,8 @@ import "../../css/Question.css"
 
 import "firebase/compat/firestore"
 import "firebase/compat/auth"
+import { firestore } from "../../firebase"
+import { useCollectionData } from "react-firebase-hooks/firestore"
 
 function Quiz(props) {
     const quizList = useContext(quizListContext)
@@ -15,6 +17,13 @@ function Quiz(props) {
 
     const handleAddQuestion = async(e) => {
         e.preventDefault()
+        Q.questions.push(newQuestion)
+
+        if(!newQuestion) {
+            return
+        }
+
+        console.log(Q.questions)
         setNewQuestion("")
     }
 
@@ -30,7 +39,7 @@ function Quiz(props) {
     return (
         <div className="question-container">
             <p className="quiz-title">{Q.name}</p>
-            <form onSubmit={(e) => handleAddQuestion(Q)}>
+            <form onSubmit={handleAddQuestion}>
                 <input
                     className="add-question-input pop"
                     value={newQuestion}

@@ -26,6 +26,7 @@ function CreateQuiz() {
             name: quizName,
             id: generateUID(),
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            questions: [],
             uid, 
         })
 
