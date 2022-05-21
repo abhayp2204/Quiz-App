@@ -14,5 +14,9 @@ firebase.initializeApp({
     measurementId: "G-6F0P6QYCMJ"
 })
 
+export const generateUID = () => {
+    return Date.now().toString(36) + Math.random().toString(36)
+}
+
 export const auth = firebase.auth()
 export const firestore = firebase.firestore()

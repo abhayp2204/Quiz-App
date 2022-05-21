@@ -5,26 +5,30 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 // Firebase
 import "firebase/compat/firestore"
 import "firebase/compat/auth"
-import { auth } from "../firebase"
+import { auth, firestore } from "../firebase"
 import { useAuthState } from "react-firebase-hooks/auth"
 
+import { useCollectionData } from "react-firebase-hooks/firestore"
+
 // Components
-import Quiz from "./Quiz"
+import Quiz from "./quiz/Quiz"
 import Navbar from "./Navbar"
 import Home from "./Home"
-import CreateQuiz from "./CreateQuiz"
-import QuizSelect from "./QuizSelect"
+import CreateQuiz from "./quiz/CreateQuiz"
+import DeleteQuiz from "./quiz/DeleteQuiz"
+import QuizSelect from "./quiz/QuizSelect"
 import SignIn from "./auth/SignIn"
-
-// Data
-import { quizzes } from "../datasets/quizzes"
 
 // CSS
 import "../css/App.css"
 import "../css/Quiz.css"
 
+export const quizzesRef = firestore.collection("quizzes")
+export const query = quizzesRef.orderBy("id").limit(50)
+
 function App() {
     const [user] = useAuthState(auth)
+    const [quizList] = useCollectionData(query, {idField: "id"})
 
     return (
         <Router>
@@ -37,9 +41,10 @@ function App() {
                             <Route path="/quizzes" element={ <QuizSelect /> } />
                             <Route
                                 path="/quizzes/:id"
-                                element={ <Quiz/> }
+                                element={ <Quiz quizList={quizList} /> }
                                 />
                             <Route path="/createquiz" element={ <CreateQuiz /> } />
+                            <Route path="/deletequiz" element={ <DeleteQuiz quizList={quizList} /> } />
                         </Routes>
                     </>
                     :

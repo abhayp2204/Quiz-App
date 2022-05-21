@@ -1,0 +1,19 @@
+.delete-quiz {
+    display: flex;
+    justify-content: center;
+    margin-top: 120px;
+}
+
+.delete-quiz-name {
+    width: 200px;
+    height: 140px;
+    margin: 30px 20px;
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

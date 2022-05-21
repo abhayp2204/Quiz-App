@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import "../css/Navbar.css"
 import { Link } from "react-router-dom"
 import { auth } from "../firebase"
@@ -21,6 +21,9 @@ function Navbar(props) {
                     </Link>
                     <Link style={navStyle} to="/createquiz">
                         <p>Create Quiz</p>
+                    </Link>
+                    <Link style={navStyle} to="/deletequiz">
+                        <p>Delete Quiz</p>
                     </Link>
                     <SignOut />
                 </>

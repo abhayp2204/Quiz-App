@@ -21,12 +21,6 @@
     border-radius: 20px;
 }
 
-div .quiz-list :hover {
-    cursor: pointer;
-    z-index: 100px;
-    transform: scale(1.07);
-}
-
 .quiz {
     display: flex;
     justify-content: center;
