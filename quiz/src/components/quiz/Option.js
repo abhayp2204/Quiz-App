@@ -1,12 +1,21 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import "../../css/Option.css"
+import { quizListContext } from "../App"
 
 function Option(props) {
+    const [quizList] = useContext(quizListContext)
     const [select, setSelect] = useState(false)
-    const bgcolor = select? "#06d6a0" : ""
+
+    const correctColor = "#69DC9E"
+    const wrongColor = "#F44708"
+    const optionColor = (props.correct? correctColor : wrongColor)
+    const bgcolor = select? optionColor : "white"
+
+    // if(props.correct) {
+    //     alert("A is correct")
+    // }
 
     function handleSelect() {
-        console.log(props.id === props.answer - 1? "correct" : "wrong")
         setSelect(!select)
     }
 

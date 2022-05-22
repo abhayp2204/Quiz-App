@@ -20,11 +20,8 @@ function Quiz() {
     const [optionB, setOptionB] = useState("")
     const [optionC, setOptionC] = useState("")
     const [optionD, setOptionD] = useState("")
-    const [correctOption, setCorrectOption] = useState("")
+    const [correctOptions, setCorrectOptions] = useState([])
 
-    console.log("correct option", correctOption)
-    
-    
     if(!quizList) return
 
     const handleAddQuestion = async(e) => {
@@ -35,7 +32,7 @@ function Quiz() {
             optionB: optionB,
             optionC: optionC,
             optionD: optionD,
-            correctOption: correctOption,
+            correctOptions: correctOptions,
         })
 
         if(!newQuestion) {
@@ -63,6 +60,11 @@ function Quiz() {
         setOptionB("")
         setOptionC("")
         setOptionD("")
+        setCorrectOptions([])
+    }
+
+    const handleCheckBox = (letter) => {
+        correctOptions.push(letter)
     }
 
     
@@ -76,16 +78,18 @@ function Quiz() {
     // Array of questions
     var questionList = []
     Q.questions && Q.questions.map((question, index) => {
+        console.log("Questionnnn = ", question.correctOptions)
         questionList.push(
             <div className="question-container">
+
                 <p className="question" key={index}>
                     {question.name}
                 </p>
-                {/* <p className="options">{question.optionA}</p> */}
-                <Option option={question.optionA} />
-                <Option option={question.optionB} />
-                <Option option={question.optionC} />
-                <Option option={question.optionD} />
+
+                <Option option={question.optionA} correct={question.correctOptions.includes("A")} />
+                <Option option={question.optionB} correct={question.correctOptions.includes("B")} />
+                <Option option={question.optionC} correct={question.correctOptions.includes("C")} />
+                <Option option={question.optionD} correct={question.correctOptions.includes("D")} />
             </div>
         )
     })
@@ -102,6 +106,7 @@ function Quiz() {
                     onChange={(e) => setNewQuestion(e.target.value)}
                     placeholder="Question"
                 />
+
                 <div className="form-option">
                     <input
                         className="add-option"
@@ -112,56 +117,56 @@ function Quiz() {
                     <input
                         type="checkbox"
                         className="checkbox"
+                        onChange={() => handleCheckBox("A")}
                         value="A"
-                        placeholder="A"
-                        label="A"
-                    />
+                        />
                 </div>
+
                 <div className="form-option">
                     <input
                         className="add-option"
                         value={optionB}
                         onChange={(e) => setOptionB(e.target.value)}
                         placeholder="B"
-                    />
+                        />
                     <input
                         type="checkbox"
                         className="checkbox"
+                        onChange={() => handleCheckBox("B")}
                         value="B"
-                        placeholder="B"
-                        label="B"
-                    />
+                        />
                 </div>
+
                 <div className="form-option">
                     <input
                         className="add-option"
                         value={optionC}
                         onChange={(e) => setOptionC(e.target.value)}
                         placeholder="C"
-                    />
+                        />
                     <input
                         type="checkbox"
                         className="checkbox"
+                        onChange={() => handleCheckBox("C")}
                         value="C"
-                        placeholder="C"
-                        label="C"
-                    />
+                        />
                 </div>
+
                 <div className="form-option">
                     <input
                         className="add-option"
                         value={optionD}
                         onChange={(e) => setOptionD(e.target.value)}
                         placeholder="D"
-                    />
+                        />
                     <input
                         type="checkbox"
                         className="checkbox"
+                        onChange={() => handleCheckBox("D")}
                         value="D"
-                        placeholder="D"
-                        label="D"
-                    />
+                        />
                 </div>
+
                 <button className="add-question-submit" type="submit">Add</button>
             </form>
         </div>
