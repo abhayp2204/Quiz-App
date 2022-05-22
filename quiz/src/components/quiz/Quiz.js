@@ -64,6 +64,8 @@ function Quiz() {
     }
 
     const handleCheckBox = (letter) => {
+        const cb = document.getElementById(`option-${letter}`)
+        if(!cb.checked) return
         correctOptions.push(letter)
     }
 
@@ -78,7 +80,6 @@ function Quiz() {
     // Array of questions
     var questionList = []
     Q.questions && Q.questions.map((question, index) => {
-        console.log("Questionnnn = ", question.correctOptions)
         questionList.push(
             <div className="question-container">
 
@@ -86,10 +87,26 @@ function Quiz() {
                     {question.name}
                 </p>
 
-                <Option option={question.optionA} correct={question.correctOptions.includes("A")} />
-                <Option option={question.optionB} correct={question.correctOptions.includes("B")} />
-                <Option option={question.optionC} correct={question.correctOptions.includes("C")} />
-                <Option option={question.optionD} correct={question.correctOptions.includes("D")} />
+                <Option
+                    key={index}
+                    option={question.optionA}
+                    correct={question.correctOptions.includes("A")}
+                />
+                <Option
+                    key={index}
+                    option={question.optionB}
+                    correct={question.correctOptions.includes("B")}
+                />
+                <Option
+                    key={index}
+                    option={question.optionC}
+                    correct={question.correctOptions.includes("C")}
+                />
+                <Option
+                    key={index}
+                    option={question.optionD}
+                    correct={question.correctOptions.includes("D")}
+                />
             </div>
         )
     })
@@ -119,6 +136,7 @@ function Quiz() {
                         className="checkbox"
                         onChange={() => handleCheckBox("A")}
                         value="A"
+                        id="option-A"
                         />
                 </div>
 
@@ -134,6 +152,7 @@ function Quiz() {
                         className="checkbox"
                         onChange={() => handleCheckBox("B")}
                         value="B"
+                        id="option-B"
                         />
                 </div>
 
@@ -149,6 +168,7 @@ function Quiz() {
                         className="checkbox"
                         onChange={() => handleCheckBox("C")}
                         value="C"
+                        id="option-C"
                         />
                 </div>
 
@@ -164,6 +184,7 @@ function Quiz() {
                         className="checkbox"
                         onChange={() => handleCheckBox("D")}
                         value="D"
+                        id="option-D"
                         />
                 </div>
 
