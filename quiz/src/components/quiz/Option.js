@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import "../../css/Option.css"
 
 function Option(props) {
     const [select, setSelect] = useState(false)
@@ -16,7 +17,7 @@ function Option(props) {
             style={{ backgroundColor: bgcolor }}
             onClick={() => handleSelect()}
         >
-            {props.title}
+            {props.option}
         </p>
     )
 }

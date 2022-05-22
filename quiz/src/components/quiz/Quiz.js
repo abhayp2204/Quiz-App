@@ -2,10 +2,12 @@ import React, { useState, useContext } from "react"
 import { query, quizListContext } from "../App"
 import { useParams } from "react-router-dom"
 import "../../css/Question.css"
+import "../../css/AddQuestion.css"
 
 import "firebase/compat/firestore"
 import "firebase/compat/auth"
 import { firestore } from "../../firebase"
+import Option from "./Option"
 
 function Quiz() {
     const quizList = useContext(quizListContext)
@@ -18,7 +20,10 @@ function Quiz() {
     const [optionB, setOptionB] = useState("")
     const [optionC, setOptionC] = useState("")
     const [optionD, setOptionD] = useState("")
+    const [correctOption, setCorrectOption] = useState("")
 
+    console.log("correct option", correctOption)
+    
     
     if(!quizList) return
 
@@ -30,6 +35,7 @@ function Quiz() {
             optionB: optionB,
             optionC: optionC,
             optionD: optionD,
+            correctOption: correctOption,
         })
 
         if(!newQuestion) {
@@ -53,6 +59,10 @@ function Quiz() {
         })
 
         setNewQuestion("")
+        setOptionA("")
+        setOptionB("")
+        setOptionC("")
+        setOptionD("")
     }
 
     
@@ -71,10 +81,11 @@ function Quiz() {
                 <p className="question" key={index}>
                     {question.name}
                 </p>
-                <p className="options">{question.optionA}</p>
-                <p className="options">{question.optionB}</p>
-                <p className="options">{question.optionC}</p>
-                <p className="options">{question.optionD}</p>
+                {/* <p className="options">{question.optionA}</p> */}
+                <Option option={question.optionA} />
+                <Option option={question.optionB} />
+                <Option option={question.optionC} />
+                <Option option={question.optionD} />
             </div>
         )
     })
@@ -84,37 +95,73 @@ function Quiz() {
             <p className="quiz-title">{Q.name}</p>
             {questionList}
 
-            <form className="add-question-form pop" onSubmit={handleAddQuestion}>
+            <form className="add-question-form" onSubmit={handleAddQuestion}>
                 <input
                     className="add-question-input"
                     value={newQuestion}
                     onChange={(e) => setNewQuestion(e.target.value)}
                     placeholder="Question"
                 />
-                <input
-                    className="add-option"
-                    value={optionA}
-                    onChange={(e) => setOptionA(e.target.value)}
-                    placeholder="A"
-                />
-                <input
-                    className="add-option"
-                    value={optionB}
-                    onChange={(e) => setOptionB(e.target.value)}
-                    placeholder="B"
-                />
-                <input
-                    className="add-option"
-                    value={optionC}
-                    onChange={(e) => setOptionC(e.target.value)}
-                    placeholder="C"
-                />
-                <input
-                    className="add-option"
-                    value={optionD}
-                    onChange={(e) => setOptionD(e.target.value)}
-                    placeholder="D"
-                />
+                <div className="form-option">
+                    <input
+                        className="add-option"
+                        value={optionA}
+                        onChange={(e) => setOptionA(e.target.value)}
+                        placeholder="A"
+                    />
+                    <input
+                        type="checkbox"
+                        className="checkbox"
+                        value="A"
+                        placeholder="A"
+                        label="A"
+                    />
+                </div>
+                <div className="form-option">
+                    <input
+                        className="add-option"
+                        value={optionB}
+                        onChange={(e) => setOptionB(e.target.value)}
+                        placeholder="B"
+                    />
+                    <input
+                        type="checkbox"
+                        className="checkbox"
+                        value="B"
+                        placeholder="B"
+                        label="B"
+                    />
+                </div>
+                <div className="form-option">
+                    <input
+                        className="add-option"
+                        value={optionC}
+                        onChange={(e) => setOptionC(e.target.value)}
+                        placeholder="C"
+                    />
+                    <input
+                        type="checkbox"
+                        className="checkbox"
+                        value="C"
+                        placeholder="C"
+                        label="C"
+                    />
+                </div>
+                <div className="form-option">
+                    <input
+                        className="add-option"
+                        value={optionD}
+                        onChange={(e) => setOptionD(e.target.value)}
+                        placeholder="D"
+                    />
+                    <input
+                        type="checkbox"
+                        className="checkbox"
+                        value="D"
+                        placeholder="D"
+                        label="D"
+                    />
+                </div>
                 <button className="add-question-submit" type="submit">Add</button>
             </form>
         </div>

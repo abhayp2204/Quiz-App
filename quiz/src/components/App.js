@@ -32,6 +32,9 @@ function App() {
     const [user] = useAuthState(auth)
     const [quizList] = useCollectionData(query, {idField: "id"})
 
+    const test = () => {}
+    console.log(test())
+
     return (
         <quizListContext.Provider value={quizList}>
         <Router>

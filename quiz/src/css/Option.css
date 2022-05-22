@@ -1,0 +1,9 @@
+.option {
+    background-color: white;
+    padding: 8px;
+}
+
+.option:hover {
+    cursor: pointer;
+    background-color: #DDDDDD;
+}
