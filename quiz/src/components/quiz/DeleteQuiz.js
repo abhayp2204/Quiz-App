@@ -4,7 +4,7 @@ import "../../css/DeleteQuiz.css"
 import "firebase/compat/firestore"
 import "firebase/compat/auth"
 import { query } from "../App"
-import { firestore } from "../../firebase"
+import { auth, firestore } from "../../firebase"
 
 function DeleteQuiz(props) {
     const { quizList } = props

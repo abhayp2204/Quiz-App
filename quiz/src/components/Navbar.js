@@ -1,9 +1,12 @@
 import React from "react"
 import "../css/Navbar.css"
 import { Link } from "react-router-dom"
-import { auth } from "../firebase"
+import { auth, isAdmin } from "../firebase"
 
 function Navbar(props) {
+    if(!auth.currentUser) return
+    const { uid } = auth.currentUser
+
     const navStyle = {
         color: "white",
         textDecoration: "none",
@@ -19,12 +22,18 @@ function Navbar(props) {
                     <Link style={navStyle} to="/quizzes">
                         <p>Quizzes</p>
                     </Link>
-                    <Link style={navStyle} to="/createquiz">
-                        <p>Create Quiz</p>
-                    </Link>
-                    <Link style={navStyle} to="/deletequiz">
-                        <p>Delete Quiz</p>
-                    </Link>
+                    
+                    {isAdmin(uid) && (
+                        <>
+                            <Link style={navStyle} to="/createquiz">
+                                <p>Create Quiz</p>
+                            </Link>
+                            <Link style={navStyle} to="/deletequiz">
+                                <p>Delete Quiz</p>
+                            </Link>
+                        </>
+                    )}
+                    
                     <SignOut />
                 </>
                 :

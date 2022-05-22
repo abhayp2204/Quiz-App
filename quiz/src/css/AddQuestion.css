@@ -1,11 +1,13 @@
 .add-question-form {
     background-color: black;
+    width: 400px;
+    margin-left: 35.65%;
     border-radius: 20px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10px;
+    /* margin: 10px; */
 }
 
 .form-option {

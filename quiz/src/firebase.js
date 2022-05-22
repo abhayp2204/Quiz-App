@@ -18,5 +18,10 @@ export const generateUID = () => {
     return Date.now().toString(36) + Math.random().toString(36)
 }
 
+export const isAdmin = (uid) => {
+    return uid === "f434UW8lHafs3bcZIJfw4gO3Igg2"? true : false
+}
+
+
 export const auth = firebase.auth()
 export const firestore = firebase.firestore()

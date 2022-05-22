@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react"
 import { query, quizListContext } from "../App"
 import { useParams } from "react-router-dom"
 import "../../css/Question.css"
-import "../../css/AddQuestion.css"
 
 import "firebase/compat/firestore"
 import "firebase/compat/auth"
@@ -10,64 +9,9 @@ import { firestore } from "../../firebase"
 import Option from "./Option"
 
 function Quiz() {
-    const quizList = useContext(quizListContext)
     const { id } = useParams()
-    const quizzesRef = firestore.collection("quizzes")
-
-
-    const [newQuestion, setNewQuestion] = useState("")
-    const [optionA, setOptionA] = useState("")
-    const [optionB, setOptionB] = useState("")
-    const [optionC, setOptionC] = useState("")
-    const [optionD, setOptionD] = useState("")
-    const [correctOptions, setCorrectOptions] = useState([])
-
+    const quizList = useContext(quizListContext)
     if(!quizList) return
-
-    const handleAddQuestion = async(e) => {
-        e.preventDefault()
-        Q.questions.push({
-            name: newQuestion,
-            optionA: optionA,
-            optionB: optionB,
-            optionC: optionC,
-            optionD: optionD,
-            correctOptions: correctOptions,
-        })
-
-        if(!newQuestion) {
-            return
-        }
-
-        query.get().then(function(querySnapshot) {
-            querySnapshot.forEach(function(doc) {
-                if(doc.data().id === id) {
-                    doc.ref.delete()
-                }
-            })
-        })
-
-        await quizzesRef.add({
-            name: Q.name,
-            id: Q.id,
-            createdAt: Q.createdAt,
-            questions: Q.questions,
-            uid: Q.uid, 
-        })
-
-        setNewQuestion("")
-        setOptionA("")
-        setOptionB("")
-        setOptionC("")
-        setOptionD("")
-        setCorrectOptions([])
-    }
-
-    const handleCheckBox = (letter) => {
-        const cb = document.getElementById(`option-${letter}`)
-        if(!cb.checked) return
-        correctOptions.push(letter)
-    }
 
     
     var Q = undefined
@@ -77,33 +21,34 @@ function Quiz() {
         }
     })
 
+
     // Array of questions
     var questionList = []
     Q.questions && Q.questions.map((question, index) => {
         questionList.push(
-            <div className="question-container">
+            <div className="question-container" key={index}>
 
                 <p className="question" key={index}>
                     {question.name}
                 </p>
 
                 <Option
-                    key={index}
+                    key={`${index}A`}
                     option={question.optionA}
                     correct={question.correctOptions.includes("A")}
                 />
                 <Option
-                    key={index}
+                    key={`${index}B`}
                     option={question.optionB}
                     correct={question.correctOptions.includes("B")}
                 />
                 <Option
-                    key={index}
+                    key={`${index}c`}
                     option={question.optionC}
                     correct={question.correctOptions.includes("C")}
                 />
                 <Option
-                    key={index}
+                    key={`${index}D`}
                     option={question.optionD}
                     correct={question.correctOptions.includes("D")}
                 />
@@ -115,81 +60,6 @@ function Quiz() {
         <div className="quiz-container">
             <p className="quiz-title">{Q.name}</p>
             {questionList}
-
-            <form className="add-question-form" onSubmit={handleAddQuestion}>
-                <input
-                    className="add-question-input"
-                    value={newQuestion}
-                    onChange={(e) => setNewQuestion(e.target.value)}
-                    placeholder="Question"
-                />
-
-                <div className="form-option">
-                    <input
-                        className="add-option"
-                        value={optionA}
-                        onChange={(e) => setOptionA(e.target.value)}
-                        placeholder="A"
-                    />
-                    <input
-                        type="checkbox"
-                        className="checkbox"
-                        onChange={() => handleCheckBox("A")}
-                        value="A"
-                        id="option-A"
-                        />
-                </div>
-
-                <div className="form-option">
-                    <input
-                        className="add-option"
-                        value={optionB}
-                        onChange={(e) => setOptionB(e.target.value)}
-                        placeholder="B"
-                        />
-                    <input
-                        type="checkbox"
-                        className="checkbox"
-                        onChange={() => handleCheckBox("B")}
-                        value="B"
-                        id="option-B"
-                        />
-                </div>
-
-                <div className="form-option">
-                    <input
-                        className="add-option"
-                        value={optionC}
-                        onChange={(e) => setOptionC(e.target.value)}
-                        placeholder="C"
-                        />
-                    <input
-                        type="checkbox"
-                        className="checkbox"
-                        onChange={() => handleCheckBox("C")}
-                        value="C"
-                        id="option-C"
-                        />
-                </div>
-
-                <div className="form-option">
-                    <input
-                        className="add-option"
-                        value={optionD}
-                        onChange={(e) => setOptionD(e.target.value)}
-                        placeholder="D"
-                        />
-                    <input
-                        type="checkbox"
-                        className="checkbox"
-                        onChange={() => handleCheckBox("D")}
-                        value="D"
-                        id="option-D"
-                        />
-                </div>
-
-                <button className="add-question-submit" type="submit">Add</button>
-            </form>
         </div>
     )
 }
