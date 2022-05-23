@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, createRef } from "react"
 import "../../css/CreateQuiz.css"
 
 import firebase from "firebase/compat/app"
@@ -9,10 +9,12 @@ import { useCollectionData } from "react-firebase-hooks/firestore"
 
 function CreateQuiz() {
     const quizzesRef = firestore.collection("quizzes")
-    const query = quizzesRef.orderBy("name").limit(50)
-    const [quizList] = useCollectionData(query, {idField: "id"})
-
+    const inputRef = createRef()
     const [quizName, setQuizName] = useState("")
+
+    useEffect(() => {
+        inputRef.current.focus()
+    }, [])
 
     const handleCreateQuiz = async(e) => {
         e.preventDefault()
@@ -41,6 +43,7 @@ function CreateQuiz() {
                 value={quizName}
                 onChange={(e) => setQuizName(e.target.value)}
                 placeholder="Quiz Name"
+                ref={inputRef}
             />
             <button className="create-quiz-submit" type="submit">Create</button>
         </form>

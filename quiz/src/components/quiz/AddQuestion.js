@@ -96,7 +96,7 @@ function AddQuestion() {
                     onChange={() => handleCheckBox("A")}
                     value="A"
                     id="option-A"
-                    />
+                />
             </div>
 
             <div className="form-option">

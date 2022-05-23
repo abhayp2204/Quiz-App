@@ -8,12 +8,11 @@ import "firebase/compat/auth"
 import { firestore } from "../../firebase"
 import Option from "./Option"
 
-function Quiz() {
+function Quiz(props) {
     const { id } = useParams()
     const quizList = useContext(quizListContext)
     if(!quizList) return
 
-    
     var Q = undefined
     quizList.map(quiz => {
         if(quiz.id === id) {
