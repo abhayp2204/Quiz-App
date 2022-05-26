@@ -1,16 +1,20 @@
 import React, { useState, useContext } from "react"
-import { query, quizListContext } from "../App"
+import { quizListContext } from "../App"
 import { useParams } from "react-router-dom"
 import "../../css/Question.css"
 
 import "firebase/compat/firestore"
 import "firebase/compat/auth"
-import { firestore } from "../../firebase"
+import "firebase/compat/storage"
+import "firebase/storage"
 import Option from "./Option"
+
 
 function Quiz(props) {
     const { id } = useParams()
     const quizList = useContext(quizListContext)
+    const [allImages, setAllImages] = useState([])
+
     if(!quizList) return
 
     var Q = undefined
@@ -19,7 +23,6 @@ function Quiz(props) {
             Q = quiz
         }
     })
-
 
     // Array of questions
     var questionList = []
@@ -51,9 +54,15 @@ function Quiz(props) {
                     option={question.optionD}
                     correct={question.correctOptions.includes("D")}
                 />
+                {question.url && <img
+                    className="question-image"
+                    src={question.url}
+                    alt="not found"
+                />}
             </div>
         )
     })
+
 
     return (
         <div className="quiz-container">
@@ -62,5 +71,8 @@ function Quiz(props) {
         </div>
     )
 }
+
+
+
 
 export default Quiz

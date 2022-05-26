@@ -2,9 +2,10 @@
 import firebase from "firebase/compat/app"
 import "firebase/compat/firestore"
 import "firebase/compat/auth"
+import { getStorage } from "firebase/storage"
 
 // Initialize firebase
-firebase.initializeApp({
+const app = firebase.initializeApp({
     apiKey: "AIzaSyD9GzuLv6EgqJlQw21mEpNeuXjaFlN4PBk",
     authDomain: "chat-app-c0815.firebaseapp.com",
     projectId: "chat-app-c0815",
@@ -25,3 +26,4 @@ export const isAdmin = (uid) => {
 
 export const auth = firebase.auth()
 export const firestore = firebase.firestore()
+export const storage = getStorage(app)

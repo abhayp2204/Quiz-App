@@ -11,14 +11,9 @@ function Option(props) {
     const optionColor = (props.correct? correctColor : wrongColor)
     const bgcolor = select? optionColor : "white"
 
-    // if(props.correct) {
-    //     alert("A is correct")
-    // }
-
     function handleSelect() {
         setSelect(!select)
     }
-
 
     return (
         <p

@@ -1,42 +1,69 @@
-import React, { useState, useContext } from "react"
-import { firestore } from "../../firebase"
+import React, { useState, useContext, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { query, quizListContext } from "../App"
 import "../../css/AddQuestion.css"
+import { firestore, storage } from "../../firebase"
+import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage"
+import { v4 } from "uuid"
+import { isValidFileType } from "../../functions"
 
 function AddQuestion() {
-
     const { id } = useParams()
     const quizList = useContext(quizListContext)
     const quizzesRef = firestore.collection("quizzes")
+    const imageListRef = ref(storage, "images/")
 
     
     const [newQuestion, setNewQuestion] = useState("")
+    const [image, setImage] = useState(null)
+    const [imageUrl, setImageUrl] = useState(null)
+    const [imageList, setImageList] = useState([])
     const [optionA, setOptionA] = useState("")
     const [optionB, setOptionB] = useState("")
     const [optionC, setOptionC] = useState("")
     const [optionD, setOptionD] = useState("")
     const [correctOptions, setCorrectOptions] = useState([])
 
+    useEffect(() => {
+        listAll(imageListRef).then((res) => {
+            res.items.forEach((item) => {
+                getDownloadURL(item).then((url) => {
+                    setImageList((prev) => [...prev, url])
+                })
+            })
+        })
+    }, [])
 
-    if(!quizList) return
+    const uploadImage = (e) => {
+        if(image === null) return
+        e.preventDefault()
 
+        const imageRef = ref(storage, `images/${image.name + v4()}`)
+
+        uploadBytes(imageRef, image).then((snapshot) => {
+            getDownloadURL(snapshot.ref).then((url) => {
+                console.log("URL:", url)
+                setImageList((prev) => [...prev, url])
+                setImageUrl(url)
+            })
+        })
+    }
     
     const handleAddQuestion = async(e) => {
         e.preventDefault()
+        if(!newQuestion) return
+
         Q.questions.push({
             name: newQuestion,
+            url: imageUrl,
             optionA: optionA,
             optionB: optionB,
             optionC: optionC,
             optionD: optionD,
             correctOptions: correctOptions,
         })
-
-        if(!newQuestion) {
-            return
-        }
-
+        
+        
         query.get().then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
                 if(doc.data().id === id) {
@@ -44,8 +71,8 @@ function AddQuestion() {
                 }
             })
         })
-
-        await quizzesRef.add({
+        
+        quizzesRef.add({
             name: Q.name,
             id: Q.id,
             createdAt: Q.createdAt,
@@ -54,6 +81,7 @@ function AddQuestion() {
         })
 
         setNewQuestion("")
+        setImageUrl(null)
         setOptionA("")
         setOptionB("")
         setOptionC("")
@@ -67,6 +95,9 @@ function AddQuestion() {
         correctOptions.push(letter)
     }
 
+    if(!quizList) return
+
+
     var Q = undefined
     quizList.map(quiz => {
         if(quiz.id === id) {
@@ -75,13 +106,24 @@ function AddQuestion() {
     })
 
 	return (
+        <>
 		<form className="add-question-form" onSubmit={handleAddQuestion}>
             <input
                 className="add-question-input"
                 value={newQuestion}
                 onChange={(e) => setNewQuestion(e.target.value)}
                 placeholder="Question"
-            />
+                />
+
+            <input
+                className="add-image"
+                type="file"
+                onChange={(e) => {setImage(e.target.files[0])}}
+                />
+            <button onClick={uploadImage}>Upload</button>
+            <div className="image-output">
+                {image && image.name}
+            </div>
 
             <div className="form-option">
                 <input
@@ -89,14 +131,14 @@ function AddQuestion() {
                     value={optionA}
                     onChange={(e) => setOptionA(e.target.value)}
                     placeholder="A"
-                />
+                    />
                 <input
                     type="checkbox"
                     className="checkbox"
                     onChange={() => handleCheckBox("A")}
                     value="A"
                     id="option-A"
-                />
+                    />
             </div>
 
             <div className="form-option">
@@ -112,7 +154,7 @@ function AddQuestion() {
                     onChange={() => handleCheckBox("B")}
                     value="B"
                     id="option-B"
-                />
+                    />
             </div>
 
             <div className="form-option">
@@ -137,18 +179,29 @@ function AddQuestion() {
                     value={optionD}
                     onChange={(e) => setOptionD(e.target.value)}
                     placeholder="D"
-                />
+                    />
                 <input
                     type="checkbox"
                     className="checkbox"
                     onChange={() => handleCheckBox("D")}
                     value="D"
                     id="option-D"
-                />
+                    />
             </div>
 
             <button className="add-question-submit" type="submit">Add</button>
         </form>
+        <div className="image-grid">
+            {imageList.map((url) => {
+                return (
+                    <>
+                        <img src={url} />
+                        <p>{url}</p>
+                    </>
+                )
+            })}
+        </div>
+        </>
 	)
 }
 
