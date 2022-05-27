@@ -7,14 +7,12 @@ import "firebase/compat/firestore"
 import "firebase/compat/auth"
 import "firebase/compat/storage"
 import "firebase/storage"
-import Option from "./Option"
+import Question from "./Question"
 
 
-function Quiz(props) {
+function Quiz() {
     const { id } = useParams()
     const quizList = useContext(quizListContext)
-    const [allImages, setAllImages] = useState([])
-
     if(!quizList) return
 
     var Q = undefined
@@ -23,46 +21,15 @@ function Quiz(props) {
             Q = quiz
         }
     })
+    if(!Q) return
 
     // Array of questions
     var questionList = []
-    Q.questions && Q.questions.map((question, index) => {
+    Q.questions && Q.questions.map((question) => {
         questionList.push(
-            <div className="question-container" key={index}>
-
-                <p className="question" key={index}>
-                    {question.name}
-                </p>
-
-                <Option
-                    key={`${index}A`}
-                    option={question.optionA}
-                    correct={question.correctOptions.includes("A")}
-                />
-                <Option
-                    key={`${index}B`}
-                    option={question.optionB}
-                    correct={question.correctOptions.includes("B")}
-                />
-                <Option
-                    key={`${index}c`}
-                    option={question.optionC}
-                    correct={question.correctOptions.includes("C")}
-                />
-                <Option
-                    key={`${index}D`}
-                    option={question.optionD}
-                    correct={question.correctOptions.includes("D")}
-                />
-                {question.url && <img
-                    className="question-image"
-                    src={question.url}
-                    alt="not found"
-                />}
-            </div>
+            <Question question={question} key={question.uid} />
         )
     })
-
 
     return (
         <div className="quiz-container">
@@ -71,8 +38,5 @@ function Quiz(props) {
         </div>
     )
 }
-
-
-
 
 export default Quiz

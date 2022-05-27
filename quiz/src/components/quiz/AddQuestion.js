@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { query, quizListContext } from "../App"
 import "../../css/AddQuestion.css"
-import { firestore, storage } from "../../firebase"
+import { firestore, generateUID, storage } from "../../firebase"
 import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage"
 import { v4 } from "uuid"
 import { isValidFileType } from "../../functions"
@@ -35,14 +35,13 @@ function AddQuestion() {
     }, [])
 
     const uploadImage = (e) => {
-        if(image === null) return
         e.preventDefault()
+        if(image === null) return
 
         const imageRef = ref(storage, `images/${image.name + v4()}`)
 
         uploadBytes(imageRef, image).then((snapshot) => {
             getDownloadURL(snapshot.ref).then((url) => {
-                console.log("URL:", url)
                 setImageList((prev) => [...prev, url])
                 setImageUrl(url)
             })
@@ -51,10 +50,17 @@ function AddQuestion() {
     
     const handleAddQuestion = async(e) => {
         e.preventDefault()
+
         if(!newQuestion) return
+        if(!optionA) return
+        if(!optionB) return
+        if(!optionC) return
+        if(!optionD) return
+        if(!correctOptions) return
 
         Q.questions.push({
             name: newQuestion,
+            uid: generateUID(),
             url: imageUrl,
             optionA: optionA,
             optionB: optionB,
@@ -97,7 +103,6 @@ function AddQuestion() {
 
     if(!quizList) return
 
-
     var Q = undefined
     quizList.map(quiz => {
         if(quiz.id === id) {
@@ -106,7 +111,6 @@ function AddQuestion() {
     })
 
 	return (
-        <>
 		<form className="add-question-form" onSubmit={handleAddQuestion}>
             <input
                 className="add-question-input"
@@ -191,17 +195,6 @@ function AddQuestion() {
 
             <button className="add-question-submit" type="submit">Add</button>
         </form>
-        <div className="image-grid">
-            {imageList.map((url) => {
-                return (
-                    <>
-                        <img src={url} />
-                        <p>{url}</p>
-                    </>
-                )
-            })}
-        </div>
-        </>
 	)
 }
 

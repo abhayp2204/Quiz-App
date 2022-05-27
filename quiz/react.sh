@@ -1,4 +1,5 @@
 # !/bin/bash
+cd src
 printf "Running react.sh ...\n\n"
 
 # Create the components directory
