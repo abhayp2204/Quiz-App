@@ -1,17 +1,22 @@
-import React, { useContext, useState } from "react"
+import React, { useState, useContext } from "react"
 import "../../css/Option.css"
-import { quizListContext } from "../App"
+import { correctAnswerContext } from "./Question"
+import { selectedOptionContext } from "./Question"
 
 function Option(props) {
-    const [quizList] = useContext(quizListContext)
     const [select, setSelect] = useState(false)
-
     const correctColor = "#69DC9E"
     const wrongColor = "#F44708"
     const optionColor = (props.correct? correctColor : wrongColor)
-    const bgcolor = select? optionColor : "white"
+    // const bgcolor = select? optionColor : "white"
+    const bgcolor = props.selected? "#AAEEDD" : "white"
 
-    function handleSelect() {
+    const [correctAnswer, setCorrectAnswer] = useContext(correctAnswerContext)
+    const [selectedOption, setSelectedOption] = useContext(selectedOptionContext)
+
+    const handleSelectOption = (e) => {
+        setCorrectAnswer(props.correct)
+        setSelectedOption(props.letter)
         setSelect(!select)
     }
 
@@ -19,7 +24,7 @@ function Option(props) {
         <p
             className="option"
             style={{ backgroundColor: bgcolor }}
-            onClick={() => handleSelect()}
+            onClick={() => handleSelectOption()}
         >
             {props.option}
         </p>

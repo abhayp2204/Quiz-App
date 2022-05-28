@@ -125,9 +125,7 @@ function AddQuestion() {
                 onChange={(e) => {setImage(e.target.files[0])}}
                 />
             <button onClick={uploadImage}>Upload</button>
-            <div className="image-output">
-                {image && image.name}
-            </div>
+            {image && <div className="image-output">{image.name}</div>}
 
             <div className="form-option">
                 <input

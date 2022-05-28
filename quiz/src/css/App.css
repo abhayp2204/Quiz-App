@@ -17,6 +17,13 @@
     background-color: black;
 }
 
+button {
+    background-color: royalblue;
+    padding: 8px;
+    border-radius: 8px;
+    margin: 4px;
+}
+
 :hover button {
     cursor: pointer;
 }
