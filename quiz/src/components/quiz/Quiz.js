@@ -11,12 +11,13 @@ import Question from "./Question"
 import Timer from "./Timer"
 
 export const marksContext = createContext()
+export const currentContext = createContext()
 
 function Quiz() {
     const { id } = useParams()
     const quizList = useContext(quizListContext)
     const [marks, setMarks] = useState(0)
-    
+    const [current, setCurrent] = useState(0)    
     
     
     if(!quizList) return
@@ -34,18 +35,23 @@ function Quiz() {
     var questionList = []
     Q.questions && Q.questions.map((question) => {
         questionList.push(
-            <Question question={question} key={question.uid} />
+            <Question
+                question={question}
+                key={question.uid}
+            />
         )
     })
 
     return (
         <marksContext.Provider value={[marks, setMarks]}>
+        <currentContext.Provider value={[current, setCurrent]}>
             <div className="quiz-container">
                 <p className="quiz-title">{Q.name}</p>
                 <Timer totalTime={4} />
                 {marks}
-                {questionList}
+                {questionList[current]}
             </div>
+        </currentContext.Provider>
         </marksContext.Provider>
     )
 }

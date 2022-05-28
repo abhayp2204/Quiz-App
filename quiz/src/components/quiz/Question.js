@@ -1,6 +1,6 @@
 import React, { useState, createContext, useContext } from "react"
 import Option from "./Option"
-import { marksContext } from "./Quiz"
+import { marksContext, currentContext } from "./Quiz"
 
 export const correctAnswerContext = createContext()
 export const selectedOptionContext = createContext()
@@ -8,6 +8,7 @@ export const selectedOptionContext = createContext()
 function Question(props) {
     const {question} = props
     const [marks, setMarks] = useContext(marksContext)
+    const [current, setCurrent] = useContext(currentContext)
     const [correctAnswer, setCorrectAnswer] = useState(false)
     const [selectedOption, setSelectedOption] = useState("")
 
@@ -18,11 +19,16 @@ function Question(props) {
 
     const submitQuestion = () => {
         setMarks(m => m + correctAnswer)
+        setCurrent(i => i + 1)
     }
 
 	return (
         <>
-		<div className="question-container" key={question.uid}>
+		<div
+            className="question-container"
+            key={question.uid}
+            style={{visibility: "visible"}}
+        >
             <p className="question">
                 {question.name}
             </p>
