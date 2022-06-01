@@ -10,3 +10,7 @@ export function timeFormat(s) {
     
     return String(minutes) + ":" + str + String(seconds)
 }
+
+export function random(n) {
+    return Math.floor(Math.random() * 10) % n
+}

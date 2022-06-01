@@ -7,23 +7,10 @@ export const selectedOptionContext = createContext()
 
 function Question(props) {
     const {question} = props
-    const [marks, setMarks] = useContext(marksContext)
-    const [current, setCurrent] = useContext(currentContext)
     const [correctAnswer, setCorrectAnswer] = useState(false)
     const [selectedOption, setSelectedOption] = useState("")
 
-    const correctColor = "#69DC9E"
-    const wrongColor = "#F44708"
-    const optionColor = (props.correct? correctColor : wrongColor)
-    // const bgcolor = select? optionColor : "white"
-
-    const submitQuestion = () => {
-        setMarks(m => m + correctAnswer)
-        setCurrent(i => i + 1)
-    }
-
 	return (
-        <>
 		<div
             className="question-container"
             key={question.uid}
@@ -67,13 +54,6 @@ function Question(props) {
                 alt="not found"
             />}
         </div>
-        <button
-            className="submit-ans"
-            onClick={() => submitQuestion()}
-        >
-            Next Question
-        </button>
-        </>
 	)
 }
 

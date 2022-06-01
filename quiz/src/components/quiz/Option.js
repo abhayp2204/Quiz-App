@@ -12,6 +12,7 @@ function Option(props) {
     const handleSelectOption = (e) => {
         setCorrectAnswer(props.correct)
         setSelectedOption(props.letter)
+        alert(props.letter)
     }
 
     return (

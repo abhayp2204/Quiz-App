@@ -9,6 +9,7 @@ import "firebase/compat/storage"
 import "firebase/storage"
 import Question from "./Question"
 import Timer from "./Timer"
+import QuestionSelect from "./QuestionSelect"
 
 export const marksContext = createContext()
 export const currentContext = createContext()
@@ -50,6 +51,7 @@ function Quiz() {
                 <Timer totalTime={4} />
                 {marks}
                 {questionList[current]}
+                <QuestionSelect quiz={Q} />
             </div>
         </currentContext.Provider>
         </marksContext.Provider>

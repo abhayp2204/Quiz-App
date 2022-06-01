@@ -23,7 +23,6 @@ function QuizSelect() {
                 key={quiz.id}
                 style={navStyle}
                 to={String(quiz.id)}
-                onClick={() => alert("click")}
             >
                 <div>{quiz.name}</div>
             </Link>

@@ -17,6 +17,7 @@ import Home from "./Home"
 import CreateQuiz from "./quiz/CreateQuiz"
 import DeleteQuiz from "./quiz/DeleteQuiz"
 import QuizSelect from "./quiz/QuizSelect"
+import Register from "./auth/Register"
 import SignIn from "./auth/SignIn"
 
 // CSS
@@ -27,9 +28,14 @@ export const quizzesRef = firestore.collection("quizzes")
 export const query = quizzesRef.orderBy("id").limit(50)
 export const quizListContext = React.createContext()
 
+export const usersRef = firestore.collection("users")
+export const query2 = usersRef.orderBy("id").limit(50)
+export const userListContext = React.createContext()
+
 function App() {
     const [user] = useAuthState(auth)
     const [quizList] = useCollectionData(query, {idField: "id"})
+    const [userList] = useCollectionData(query, {idField: "id"})
 
     // Log in
     if(!user) {
@@ -47,11 +53,13 @@ function App() {
 
     return (
         <quizListContext.Provider value={quizList}>
+        <userListContext.Provider value={userList}>
             <Router>
                 {user?
                     // TODO: User is logged in
                     <>
                     <Navbar loggedIn={true} />
+                    <Register />
                     <Routes>
                         <Route path="/" element={ <Home /> } />
                         <Route path="/quizzes" element={ <QuizSelect /> } />
@@ -84,6 +92,7 @@ function App() {
                     </>
                 }
             </Router>
+        </userListContext.Provider>
         </quizListContext.Provider>
     );
 }
