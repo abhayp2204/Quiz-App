@@ -73,18 +73,18 @@ function AddQuestion() {
         query.get().then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
                 if(doc.data().id === id) {
-                    doc.ref.delete()
+                    doc.ref.update({questions: Q.questions})
                 }
             })
         })
         
-        quizzesRef.add({
-            name: Q.name,
-            id: Q.id,
-            createdAt: Q.createdAt,
-            questions: Q.questions,
-            uid: Q.uid, 
-        })
+        // quizzesRef.add({
+        //     name: Q.name,
+        //     id: Q.id,
+        //     createdAt: Q.createdAt,
+        //     questions: Q.questions,
+        //     uid: Q.uid, 
+        // })
 
         setNewQuestion("")
         setImageUrl(null)

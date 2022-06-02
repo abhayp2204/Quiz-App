@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage"
-import { storage } from "../firebase"
+import { firestore, storage } from "../firebase"
 import { v4 } from "uuid"
 import "../css/Profile.css"
-import { usersRef } from "./App"
+import { query2, usersRef } from "./App"
 
 function Profile() {
     const [image, setImage] = useState(null)
@@ -21,12 +21,15 @@ function Profile() {
         const imageRef = ref(storage, `profile/${image.name + v4()}`)
         uploadBytes(imageRef, image).then((snapshot) => {
             getDownloadURL(snapshot.ref).then((url) => {
+                alert(url)
                 setImageUrl(url)
+                
+                query2.get().then((snapshot) => {
+                    snapshot.forEach((doc) => {
+                        doc.ref.update({dp: url})
+                    })
+                })
             })
-        })
-
-        usersRef.add({
-            dp: imageUrl
         })
 
         alert("Profile picture updated")
