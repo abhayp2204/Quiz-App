@@ -1,7 +1,7 @@
-import React, { useState, useContext, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import React, { useState, useContext, useEffect } from "react"
 import { query, quizListContext } from "../App"
-import "../../css/AddQuestion.css"
+import "../../css/quiz/AddQuestion.css"
 import { firestore, generateUID, storage } from "../../firebase"
 import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage"
 import { v4 } from "uuid"
@@ -123,7 +123,7 @@ function AddQuestion() {
                 className="add-image"
                 type="file"
                 onChange={(e) => {setImage(e.target.files[0])}}
-                />
+            />
             <button onClick={uploadImage}>Upload</button>
             {image && <div className="image-output">{image.name}</div>}
 

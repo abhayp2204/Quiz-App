@@ -1,5 +1,5 @@
 import React from "react"
-import "../../css/DeleteQuiz.css"
+import "../../css/quiz/DeleteQuiz.css"
 
 import "firebase/compat/firestore"
 import "firebase/compat/auth"

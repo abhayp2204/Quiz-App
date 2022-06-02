@@ -1,5 +1,5 @@
 import React from "react"
-import "../../css/QuestionSelect.css"
+import "../../css/quiz/QuestionSelect.css"
 import QuestionButton from "./QuestionButton"
 
 function QuestionSelect(props) {

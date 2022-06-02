@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createRef } from "react"
-import "../../css/CreateQuiz.css"
+import "../../css/quiz/CreateQuiz.css"
 
 import firebase from "firebase/compat/app"
 import "firebase/compat/firestore"

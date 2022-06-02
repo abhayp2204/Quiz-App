@@ -13,12 +13,14 @@ import { useCollectionData } from "react-firebase-hooks/firestore"
 import Quiz from "./quiz/Quiz"
 import AddQuestion from "./quiz/AddQuestion"
 import Navbar from "./Navbar"
+import Sidebar from "./Sidebar"
 import Home from "./Home"
 import CreateQuiz from "./quiz/CreateQuiz"
 import DeleteQuiz from "./quiz/DeleteQuiz"
 import QuizSelect from "./quiz/QuizSelect"
 import Register from "./auth/Register"
 import SignIn from "./auth/SignIn"
+import Profile from "./Profile"
 
 // CSS
 import "../css/App.css"
@@ -41,7 +43,7 @@ function App() {
     if(!user) {
         return (
             <>
-                <Navbar loggedIn={false} />
+                <Sidebar loggedIn={false} />
                 <div className="sign-in-container">
                     <SignIn />
                 </div>
@@ -58,7 +60,8 @@ function App() {
                 {user?
                     // TODO: User is logged in
                     <>
-                    <Navbar loggedIn={true} />
+                    <Navbar />
+                    {/* <Sidebar loggedIn={true} /> */}
                     <Routes>
                         <Route path="/" element={ <Home /> } />
                         <Route path="/register" element={ <Register /> } />
@@ -74,6 +77,12 @@ function App() {
                                 </>
                             }
                         />
+                        <Route
+                            path="/profile"
+                            element={ 
+                                <Profile />
+                            }
+                        />
                         {isAdmin(uid) && (
                             <>
                                 <Route path="/createquiz" element={ <CreateQuiz /> } />
@@ -85,7 +94,7 @@ function App() {
                     :
                     // TODO: User is not logged in
                     <>
-                        <Navbar loggedIn={false} />
+                        <Sidebar loggedIn={false} />
                         <div className="sign-in-container">
                             <SignIn />
                         </div>

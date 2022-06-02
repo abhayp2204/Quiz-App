@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react"
-import "../../css/Option.css"
+import "../../css/quiz/Option.css"
 import { correctAnswerContext } from "./Question"
 import { selectedOptionContext } from "./Question"
 

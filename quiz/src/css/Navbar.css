@@ -1,26 +1,39 @@
-nav {
+.navbar {
     background-color: black;
-    color: white;
+    height: 45px;
+    width: 100%;
     position: fixed;
     top: 0;
-    width: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-nav :hover {
+.username {
+    position: fixed;
+    top: 12px;
+    right: 10px;
+
+    font-size: 16px;
+    color: white;
+}
+
+.dp {
+    position: fixed;
+    top: 8px;
+    right: 16px;
+
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    margin-top: 0px;
+    margin-left: 100px;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    padding: 5px 15px;
+}
+
+.icon:hover {
     cursor: pointer;
-    color: red;
-    color: #04A777;
-}
-
-nav p {
-    padding: 30px;
-    font-size: 25px;
-}
-
-.active {
-    background-color: #04A777;
+    transform: scale(1.16);
 }

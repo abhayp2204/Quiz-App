@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, createContext } from "react"
 import { quizListContext } from "../App"
 import { useParams } from "react-router-dom"
-import "../../css/Question.css"
+import "../../css/quiz/Question.css"
 
 import "firebase/compat/firestore"
 import "firebase/compat/auth"

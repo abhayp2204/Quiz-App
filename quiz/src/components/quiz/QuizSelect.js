@@ -1,7 +1,6 @@
 import React from "react"
-import "../../css/Quiz.css"
+import "../../css/quiz/Quiz.css"
 import { Link } from "react-router-dom"
-import "../../css/Quiz.css"
 import { firestore } from "../../firebase"
 import { useCollectionData } from "react-firebase-hooks/firestore"
 

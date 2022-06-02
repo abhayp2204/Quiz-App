@@ -1,14 +1,13 @@
 .quiz-container {
-    margin-top: 89px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .quiz-list {
+    margin-top: 45px;
     background-image: none;
     background-color: #E9FFF9;
-    margin-top: 90px;
     font-size: 20px;
     display: flex;
     justify-content: center;

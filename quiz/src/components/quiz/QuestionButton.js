@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { currentContext } from "./Quiz"
-import "../../css/QuestionSelect.css"
+import "../../css/quiz/QuestionSelect.css"
 
 function QuestionButton(props) {
     const [current, setCurrent] = useContext(currentContext)

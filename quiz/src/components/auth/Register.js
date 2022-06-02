@@ -7,6 +7,7 @@ import { auth, firestore, generateUID } from "../../firebase"
 import { userListContext, usersRef } from "../App"
 import { taglist } from "../../data/tags"
 import Tags from "./Tags"
+import { Navigate } from "react-router-dom"
 
 function Register() {
     const userList = useContext(userListContext)
@@ -39,6 +40,7 @@ function Register() {
 
         if(password.localeCompare(confirmPassword)) {
             setError("Passwords do not match")
+            setConfirmPassword("")
             return
         }
 
@@ -56,6 +58,7 @@ function Register() {
 
         usersRef.add({
             username: username,
+            dp: auth.currentUser.photoURL,
             nickname: auth.currentUser.displayName,
             email: auth.currentUser.email,
             password: password,
@@ -64,7 +67,7 @@ function Register() {
             tags: selectedTags,
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         })
-
+        
         setError(null)
     }
 

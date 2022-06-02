@@ -4,12 +4,7 @@ import "../css/Home.css"
 
 function Home() {
     return (
-        <>
-            <img src={Background} alt="background image" />
-            <img src={Background} alt="background image" />
-            <img src={Background} alt="background image" />
-            <img src={Background} alt="background image" />
-        </>
+        <div className="home"></div>
     )
 }
 

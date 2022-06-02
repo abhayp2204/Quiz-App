@@ -1,59 +1,26 @@
-import React from "react"
-import "../css/Navbar.css"
+import React, { useState } from "react"
 import { Link } from "react-router-dom"
-import { auth, isAdmin } from "../firebase"
+import { useAuthState } from "react-firebase-hooks/auth"
+import "../css/Navbar.css"
+import { auth } from "../firebase"
+import Sidebar from "./Sidebar"
+const Menu = require("../images/menu7.png")
 
-function Navbar(props) {
-    if(!auth.currentUser) return
-    const { uid } = auth.currentUser
+function Navbar() {
+    const [open, setOpen] = useState(false)
+    const [user] = useAuthState(auth)
 
-    const navStyle = {
-        color: "white",
-        textDecoration: "none",
-    }
-
-    return (
-        <nav>
-            {props.loggedIn?
-                <>
-                    <Link style={navStyle} to="/">
-                        <p>Home</p>
-                    </Link>
-                    <Link style={navStyle} to="/quizzes">
-                        <p>Quizzes</p>
-                    </Link>
-                    
-                    {isAdmin(uid) && (
-                        <>
-                            <Link style={navStyle} to="/createquiz">
-                                <p>Create Quiz</p>
-                            </Link>
-                            <Link style={navStyle} to="/deletequiz">
-                                <p>Delete Quiz</p>
-                            </Link>
-                        </>
-                    )}
-                    
-                    <SignOut />
-                </>
-                :
-                <>
-                    <Link style={navStyle} to="/">
-                        <p>Leaf Quiz</p>
-                    </Link>
-                </>
-            }
-            
-        </nav>
-    )
-}
-
-function SignOut() {
-    return auth.currentUser && (
-        <Link className="sign-out" onClick={() => auth.signOut()} to="/">
-            Sign Out
-        </Link>
-    )
+	return (
+        <>
+            <div className="navbar">
+                <img className="icon" src={Menu} onClick={() => setOpen(!open)} />
+            </div>
+            <Sidebar loggedIn={true} open={open} />
+            <Link to="profile">
+                <img className="dp" src={auth.currentUser.photoURL} alt="dp" />
+            </Link>
+        </>
+	)
 }
 
 export default Navbar

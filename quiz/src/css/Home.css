@@ -1,5 +1,4 @@
-img {
+.home {
     width: 25%;
-    height: 666px;
-    margin-top: 89px;
+    background-color: black;
 }
