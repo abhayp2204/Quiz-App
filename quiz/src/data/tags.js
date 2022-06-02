@@ -1,4 +1,4 @@
-export const tags = [
+export const taglist = [
     "Movies",
     "TV",
     "Cars",
@@ -8,4 +8,15 @@ export const tags = [
     "Logos",
     "Food",
     "Countries",
+    "Game Of Thrones",
+    "Breaking Bad",
+    "Skyrim",
+    "Valorant",
+    "E-Sports",
+    "Universe",
+    "Music",
+    "Physics",
+    "Math",
+    "English",
+    "React",
 ]

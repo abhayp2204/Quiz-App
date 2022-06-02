@@ -32,3 +32,12 @@ button {
     cursor: pointer;
     transform: scale(1.1);
 }
+
+.error {
+    background-color: #DDDDDD;
+    color: red;
+    opacity: 0.73;
+    margin: 8px;
+    padding: 10px;
+    border-radius: 10px;
+}

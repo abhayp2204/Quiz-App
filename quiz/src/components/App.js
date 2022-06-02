@@ -29,13 +29,13 @@ export const query = quizzesRef.orderBy("id").limit(50)
 export const quizListContext = React.createContext()
 
 export const usersRef = firestore.collection("users")
-export const query2 = usersRef.orderBy("id").limit(50)
+export const query2 = usersRef.orderBy("uid").limit(50)
 export const userListContext = React.createContext()
 
 function App() {
     const [user] = useAuthState(auth)
     const [quizList] = useCollectionData(query, {idField: "id"})
-    const [userList] = useCollectionData(query, {idField: "id"})
+    const [userList] = useCollectionData(query2, {idField: "uid"})
 
     // Log in
     if(!user) {
@@ -59,9 +59,9 @@ function App() {
                     // TODO: User is logged in
                     <>
                     <Navbar loggedIn={true} />
-                    <Register />
                     <Routes>
                         <Route path="/" element={ <Home /> } />
+                        <Route path="/register" element={ <Register /> } />
                         <Route path="/quizzes" element={ <QuizSelect /> } />
                         <Route
                             path="/quizzes/:id"
